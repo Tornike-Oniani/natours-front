@@ -1,0 +1,65 @@
+.btn {
+  &:link,
+  &:visited {
+    position: relative;
+    display: inline-block;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    /* Enables animation on all properties. Because of this the transform (and other properties) in :hover and :active will be animated in 0.2 seconds */
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    /* x offset, y offset, blur, color */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &::after {
+    /* We have to always specify the content (even when its empty) and display or this element won't appear */
+    content: '';
+    display: inline-block;
+    /* Pseudo element is treated like a child so setting 100%s here will mean 100% of parent (In our case button) */
+    height: 100%;
+    width: 100%;
+
+    border-radius: 10rem;
+
+    /* Put the element behind the button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    /* Animate all properties - transform, opacity, color etc. on btn::after pseudo element */
+    transition: all 0.4s;
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-gray-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /* Apply the properties of 0% even BEFORE the animation starts */
+    animation-fill-mode: backwards;
+  }
+}
