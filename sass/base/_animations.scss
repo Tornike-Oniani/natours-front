@@ -47,3 +47,44 @@
     transform: translate(0);
   }
 }
+
+.heading-primary-main {
+  /* ... */
+  animation-name: moveInLeft;
+  animation-duration: 5s;
+  animation-delay: 3s;
+  /* How many times should animation run */
+  animation-iteration-count: 3;
+  animation-timing-function: ease-out;
+  backface-visibility: hidden;
+}
+
+.heading-primary {
+  /* This is a parent which is shaking when animation the child
+  so we set backface-visibility here */
+  backface-visibility: hidden;
+}
+
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  border-radius: 10rem;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+.btn-white {
+  background-color: #ffffff;
+  color: #777777;
+}

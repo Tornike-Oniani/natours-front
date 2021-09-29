@@ -1,15 +1,20 @@
 .btn {
+  &,
   &:link,
   &:visited {
     position: relative;
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: $default-font-size;
     text-transform: uppercase;
     text-decoration: none;
     padding: 1.5rem 4rem;
     border-radius: 10rem;
     /* Enables animation on all properties. Because of this the transform (and other properties) in :hover and :active will be animated in 0.2 seconds */
     transition: all 0.2s;
+
+    // Change for the <button> element
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -23,7 +28,9 @@
     }
   }
 
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
@@ -44,7 +51,7 @@
     left: 0;
     z-index: -1;
 
-    /* Animate all properties - transform, opacity, color etc. on btn::after pseudo element */
+    /* Animate all properties - transform, opacity, color etc. on btn::after pseudo element (In our case we are animating btn:hover::after)*/
     transition: all 0.4s;
   }
 
@@ -57,9 +64,44 @@
     }
   }
 
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
   &--animated {
+    // Name, duration, mode, delay
     animation: moveInBottom 0.5s ease-out 0.75s;
     /* Apply the properties of 0% even BEFORE the animation starts */
     animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+    transform: translateY(0);
   }
 }
